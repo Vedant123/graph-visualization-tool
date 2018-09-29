@@ -1,0 +1,19 @@
+README for Graph-Visualizer-Generator.c
+
+This file acts as the back-end for the visualizer, churning out the nauty algorithms and operations to determine all the non-isomorphic graphs of a specified order, and delivers a partition of the vertices into orbit.
+
+To compile this file, run the following command into the terminal -
+
+gcc -o graph-visualizer-generator -O3 -DMAXN=32 -DGENG_MAIN=geng_main -DDIRECTG_MAIN=directg_main -DSHOWG_MAIN=showg_main \graph-visualizer-generator.c geng.c directg.c showg.c nauty.a
+
+This should generate a graph-visualizer-generator executable that should be run with 2 command-line arguments -
+1. The order of the graph (e.g. 4 vertices, 6 vertices, etc.)
+2. If the user wishes to direct the edges of the graph (by calling upon the directg functions)
+
+An example of how graph-visualizer-generator could be called is through ./graph-visualizer-generator 4 D
+
+The above command would generate 2 key files - a formattedOutFile.g, and an orbits.g file.
+
+formattedOutFile.g - a file that is the result of passing through all the graphs through the showg function, and has the edges and vertices listed out in a concise, understandable and comprehendable manner for the visualizer in Java to process into the custom-defined Graph class I made.
+
+orbits.g - a file that holds all the orbits of the graphs listed out in the identical order of the graphs in formattedOutFile.g
